@@ -1,0 +1,16 @@
+{% extends 'myadmin/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+<div class="myadmin_container product_delete">
+    Уверены, что хотите удалить продукт <strong>{{ object.caption }}</strong>?
+    <form action="{% url 'myadmin:product_delete' pk %}" method="post">
+        {% csrf_token %}
+        <input class="btn" type="submit" value="Удалить">
+    </form>
+    <a class="btn" href="{% url 'myadmin:products' pk %}">
+        Отмена
+    </a>
+</div>
+{% endblock %}

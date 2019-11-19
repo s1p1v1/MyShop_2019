@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PeterS Сognac Magazine (BoS example)</title>
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+    {% block js %}
+
+    {% endblock %}
+</head>
+<body>
+<div class="container">
+    <div class="login">
+        <div class="h2 text-center head">
+            Вход в систему
+        </div>
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>

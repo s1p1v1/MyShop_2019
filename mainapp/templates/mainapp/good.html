@@ -1,0 +1,43 @@
+{% extends 'mainapp/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+{% include 'mainapp/includes/inc_country_menu.html' %}
+
+<h1>{{ same_product.caption }}</h1>
+<h2 class="title"> Описание</h2>
+<p class="small_img">
+    <a href="/media/{{ same_product.image_src }}" target="_blank">
+        <img alt="{{ same_product.caption }}" class="img_g" src="/media/{{ same_product.image_src }}">
+        <!-- <img class="img_g" src="/static/img/Ararat_Akhtamar_10.jpg" alt="Коньяк Ахтамар (в подарочной коробке)">-->
+    </a>
+</p>
+<p class="par">{{ same_product.quality }}</p>
+<p class="par">{{ same_product.preference }}</p>
+<form action="{% url 'basket:add' same_product.pk %}" method="post">
+    {% csrf_token %}
+    <button class="btn btn-primary btn_good" type="submit">Купить</button>
+</form>
+
+<h2 class="title"> Характеристики</h2>
+<ul class="atribute">
+    <li><b>Регион:</b> {{ same_product.country.name }}</li>
+    <li><b>Производитель:</b> {{ same_product.producer }}</li>
+    <li><b>Бренд:</b> {{ same_product.brand }}</li>
+    <li><b>Крепость:</b> {{ same_product.alco }}</li>
+    <li><b>Объем:</b> {{ same_product.vol }}</li>
+    <li><b>Класс коньяка:</b> {{ same_product.class_c }}</li>
+    <li><b>Выдержка:</b> {{ same_product.age }}&nbspлет</li>
+    <li><b>Цена:</b> {{ same_product.cost }}&nbspруб.</li>
+    <li><b>Количество (в наличие):</b> {{ same_product.quantity }}&nbspшт.</li>
+</ul>
+<h2 class="title"> Комментарии </h2>
+<p class="par-text">{{ same_product.comment }}</p>
+<h2 class="title"> Средняя оценка продукта покупателями </h2>
+<p class="par-text">{{ rating_product }} ({{ r_product }})</p>
+<h2 class="title"> Памятка </h2>
+<p>Чрезмерное употребление алкоголя вредит вашему здоровью</p>
+{% if get_form %}
+{% include 'mainapp/includes/inc_good_rating.html' %}
+{% endif %}
+{% endblock %}

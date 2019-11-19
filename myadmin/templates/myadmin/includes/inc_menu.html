@@ -1,0 +1,15 @@
+<ul class="menu">
+    <li><a href="{% url 'main' %}">На сайт</a></li>
+    <li>
+        <a class="{% if request.resolver_match.url_name == 'users' %}active{% endif %}"
+           href="{% url 'myadmin:users' %}">
+            Пользователи
+        </a>
+    </li>
+    <li>
+        <a class="{% if request.resolver_match.url_name == 'country' or country.name %}active{% endif %}"
+           href="{% url 'myadmin:countrys' %}">
+            Страны{% if country %}:<span>{{ country.name }}</span>{% endif %}
+        </a>
+    </li>
+</ul>

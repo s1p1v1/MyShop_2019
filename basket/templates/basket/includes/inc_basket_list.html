@@ -1,0 +1,36 @@
+<!-- {% for item in object_list %}
+     {% endfor %}-->
+{% for item in basket_items %}
+
+<div class="basket_record">
+    <p class="small_img">
+        <img alt="{{ item.product.caption }}" class="img_g" src="/media/{{ item.product.image_src }}">
+    <p/>
+    <p>
+        {{ item.product.country }}
+    <p/>
+    <p>
+        {{ item.product.caption }}
+    <p/>
+    {{ item.product.cost }}&nbspруб
+    <p>
+        <input min="0" name="{{ item.pk }}" type="number" value="{{ item.quantity }}">
+        {{ item.cost }}&nbspруб
+    </p>
+
+    {% csrf_token %}
+    <button class="btn_good" name="{{ item.pk }}" type="submit">
+        <a class="" href="{% url 'basket:delete' item.pk %}">Удалить </a>
+    </button>
+
+    <hr>
+</div>
+{% endfor %}
+
+{% if basket_items %}
+<div class="basket_summary">
+    В корзине {{ basket_items.0.total_quantity }} товаров общей стоимостью
+    {{ basket_items.0.total_cost }} руб
+</div>
+{% endif %}
+

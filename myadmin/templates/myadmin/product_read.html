@@ -1,0 +1,41 @@
+{% extends 'myadmin/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+<div class="myadmin_container product_read">
+    <div class="product_name">
+        Продукт<strong>{{ object.country.caption|title }} / {{ object.caption }}</strong>
+    </div>
+    <img alt="{{ object.caption }}" class="img_g"
+         src="/media/{{ object.image_src|default:'products_images/default.jpg' }}">
+    <div class="summary">
+        <p>
+            <b>Цена: </b>{{ object.cost }} руб.
+        </p>
+        <p>
+            <b>Количество: </b>{{ object.quantity }} шт.
+        </p>
+        <b>В каталоге </b>{% if object.is_active %}имеется{% else %}отсутствует{% endif %}
+        <p>
+            <a class="btn" href="{% url 'myadmin:product_update' object.pk %}">Редактировать</a>
+        </p>
+        <p>
+            <a class="btn" href="{% url 'myadmin:product_delete' object.pk %}">Удалить</a>
+        </p>
+        <p>
+            <a class="btn" href="{% url 'myadmin:products' object.country.pk %}">Назад</a>
+        </p>
+    </div>
+    <div class="product_desc">
+        <b>Краткая характеристика:</b>
+        <p>
+            {{ object.quality }}
+        </p>
+        <b>Подробная информация:</b>
+        <p>
+            {{ object.comment }}
+        </p>
+    </div>
+</div>
+{% endblock %}

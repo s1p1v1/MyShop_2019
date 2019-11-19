@@ -1,0 +1,57 @@
+{% extends 'mainapp/base.html' %}
+{% load staticfiles %}
+{% load my_tags %}
+
+
+{% block add %}
+
+{% endblock %}
+
+{% block content %}
+<div class="content">
+
+    <div class="subtitul">
+        <h1 class="red">Горячее предложение</h1>
+        <div class="hot">
+            <p>
+                <img alt="{{ hot_product.caption }}" height="72" src="/media/{{ hot_product.image_src }}" width="54">
+            </p>
+            <p>
+                <a href="/good/{{ hot_product.id }}/"> {{ hot_product.caption|expanded_text }} </a>
+            </p>
+            <p class="price"> {{ hot_product.cost|ruble_penny }}</p>
+        </div>
+    </div>
+    <h1> Сводный каталог коньяков:</h1>
+
+    {% include 'mainapp/includes/inc_sorting.html' %}
+
+    <div class="paginator">
+        {% if same_products.has_previous %}
+        <a href="/catalogue/?country={{ country.pk }}&page={{ same_products.previous_page_number }}
+						&price_rating={{ price_rating }}&sorting_direction={{ sorting_direction }}"><</a>
+        {% endif %}
+        <span class="current">
+			страница {{ same_products.number }} из {{ same_products.paginator.num_pages }}
+			</span>
+        {% if same_products.has_next %}
+        <a href="/catalogue/?country={{ country.pk }}&page={{ same_products.next_page_number }}
+						&price_rating={{ price_rating }}&sorting_direction={{ sorting_direction }}">></a>
+        {% endif %}
+    </div>
+
+    <h2 class="subtitul"> {{ country.name }}</h2>
+    <div class="catalog">
+        {% for prod in same_products %}
+        <div class="goods">
+            <p>
+                <img alt="{{ prod.caption }}" height="72" src="/media/{{ prod.image_src }}" width="54">
+            </p>
+            <p>
+                <a href="/good/{{ prod.id }}/"> {{ prod.caption }} </a>
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

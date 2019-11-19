@@ -1,0 +1,10 @@
+{% extends 'basket/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="basket_list">
+    {% include 'basket/includes/inc_basket_list.html' %}
+
+</div>
+<a class="btn_main" href="{% url 'main' %}"> На главную</a>
+{% endblock %}

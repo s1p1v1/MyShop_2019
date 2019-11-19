@@ -1,0 +1,52 @@
+{% load staticfiles %}
+<div class="header">
+    <a href="{% url 'main' %}">
+        <img alt="PeterS Сognac Magazine" class="img_logo img-responsive" src="{% static 'img/logo2.png'%}">
+    </a>
+
+    <ul class="menu">
+        <li>
+            <a href="{% url 'main' %}">Главная</a>
+        </li>
+        <li>
+            <a href="{% url 'catalogue' %}">Каталог</a>
+        </li>
+        <li>
+            <a href="{% url 'search' %}">Поиск</a>
+        </li>
+        <li>
+            <a href="{% url 'contact' %}">Контакты</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+            <a href="{% url 'auth:edit' %}">
+                {{ user.first_name|default:'Пользователь' }}
+            </a>
+        </li>
+        <li>
+            <!--возраст: {{user.age}}-->
+            <a href="{% url 'auth:logout' %}">Выход</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url 'auth:login' %}">Вход на сайт</a>
+        </li>
+        {% endif %}
+
+        {% if user.is_superuser %}
+        <li>
+            <a href="{% url 'myadmin:users' %}">Админка</a>
+        </li>
+        {% endif %}
+
+        <li>
+            <a class="basket" href="{% url 'basket:view' %}">
+                <span>
+                    {% if basket %}
+                        {{ basket.0.total_cost|floatformat:0 }} руб ({{ basket.0.total_quantity }} шт)
+                    {% endif %}
+                </span>
+            </a>
+        </li>
+    </ul>
+</div>

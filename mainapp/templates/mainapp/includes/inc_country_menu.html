@@ -1,0 +1,14 @@
+<h1> Отбор коньяков по странам поставщикам:</h1>
+<ul class="countrys">
+    {% for i in countrys %}
+    {% if i.is_active %}
+    <li>
+        <a class="{% if request.resolver_match.kwargs.cou_pk|add:'0' == i.id %}active{% endif %}"
+           href="/catalogue/?country={{ i.pk }}">
+            {{ i.name }}
+        </a>
+    </li>
+    {% endif %}
+    {% endfor %}
+
+</ul>

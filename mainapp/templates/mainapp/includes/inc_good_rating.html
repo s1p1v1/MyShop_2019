@@ -1,0 +1,9 @@
+<div>
+    <h2 class="title"> Ваша оценка товара </h2>
+    Код товара: {{ same_product.id }}
+    <form action="{% url 'good' same_product.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary btn_good" type="submit">Оценить</button>
+    </form>
+</div>

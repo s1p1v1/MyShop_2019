@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>PeterS Сognac Magazine</title>
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+    <link href="{% static 'img/favicon.ico' %}" rel="icon" type="image/x-icon"/>
+    <link href="{% static 'img/favicon.ico' %}" rel="shortcut icon" type="image/x-icon"/>
+    <link crossorigin="" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          rel="stylesheet"/>
+    <script crossorigin=""
+            integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+            src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+
+
+    {% block js %}
+
+    {% endblock %}
+</head>
+<body>
+<!-- Выполнил Стащук Петр -->
+<div class="container">
+
+    {% include 'mainapp/includes/inc_header.html' %}
+
+    {% block add %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    <div class="footer">
+        <p> {% now 'Y' %} &copy; «Все права защищены»</p>
+    </div>
+</div>
+
+</body>
+</html>

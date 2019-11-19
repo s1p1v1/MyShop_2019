@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Корзина покупателя</title>
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+    {% block js %}
+    <script src="{% static 'lib/js/jquery-3.3.1.js' %}"></script>
+    <script src="{% static 'lib/js/basket_scripts.js' %}"></script>
+    {% endblock %}
+</head>
+<body>
+<div class="basket_container">
+    <h3>
+        Ваша корзина, {% if user.first_name %}{{ user.first_name|title}}{% else %}Пользователь{% endif %}
+    </h3>
+
+    {% block content %}
+    {% endblock %}
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'mainapp/base.html' %}
+{% load staticfiles %}
+{% load my_tags %}
+
+{% block content %}
+<div class="content">
+    <h1> Поиск продукта </h1>
+    <form action="{% url 'search' %}" class="search" method="get">
+        {{ form.as_p }}
+        <button class="btn " type="submit">Искать</button>
+    </form>
+
+    {% if same_products %}
+    <div class="paginator">
+        {% if same_products.has_previous %}
+        <a href="?search={{ search_query }}&page={{ same_products.previous_page_number }}"><</a>
+        {% endif %}
+        <span class="current">
+				страница {{ same_products.number }} из {{ same_products.paginator.num_pages }}
+				</span>
+        {% if same_products.has_next %}
+        <a href="?search={{ search_query }}&page={{ same_products.next_page_number }}">></a>
+        {% endif %}
+    </div>
+
+    <h2 class="subtitul"> {{ country.name }}</h2>
+    <div class="catalog">
+        {% for prod in same_products %}
+        <div class="goods">
+            <p>
+                <img alt="{{ prod.caption }}" height="72" src="/media/{{ prod.image_src }}" width="54">
+            </p>
+            <p>
+                <a href="/good/{{ prod.id }}/"> {{ prod.caption }} </a>
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

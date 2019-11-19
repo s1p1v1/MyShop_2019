@@ -1,0 +1,26 @@
+{% extends 'myadmin/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+<div class="myadmin_container countrys_list">
+    <a class="btn new" href="{% url 'myadmin:country_create' %}">Новая страна</a>
+    {% for object in object_list %}
+    <div class="country_record {% if not object.is_active %} not_active {% endif %}">
+
+        <div class="country_name">
+            {{ object.name|title }}
+        </div>
+        <div class="country_actions">
+            <a class="btn" href="{% url 'myadmin:products' object.pk %}">Продукты страны</a>
+            <a class="btn" href="{% url 'myadmin:country_update' object.pk %}">Редактировать</a>
+            <a class="btn" href="{% url 'myadmin:country_delete' object.pk %}">Удалить</a>
+        </div>
+        <div class="country_desc">
+            {{ object.description|title }}
+        </div>
+    </div>
+    <hr>
+    {% endfor%}
+</div>
+{% endblock %}

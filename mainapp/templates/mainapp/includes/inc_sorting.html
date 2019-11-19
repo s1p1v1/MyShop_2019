@@ -1,0 +1,8 @@
+<h2> Отбор коньяков по странам и сортировка по цене и рейтингу:</h2>
+<ul class="sorting">
+    <form action="{% url 'catalogue' %}" class="sorting" method="get">
+        {{ form.as_p }}
+        <button class="btn btn-primary btn_good" type="submit">Обработать запрос</button>
+    </form>
+
+</ul>

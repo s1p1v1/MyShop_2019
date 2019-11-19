@@ -1,0 +1,14 @@
+{% extends 'myadmin/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+<div class="myadmin_container country_delete">
+    Уверены, что хотите удалить страну <strong>{{ object.name }}</strong>?
+    <form action="{% url 'myadmin:country_delete' object.pk %}" method="post">
+        {% csrf_token %}
+        <input class="btn" type="submit" value="Удалить">
+    </form>
+    <a class="btn" href="{% url 'myadmin:countrys' %}">Отмена</a>
+</div>
+{% endblock %}

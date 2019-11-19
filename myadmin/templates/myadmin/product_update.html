@@ -1,0 +1,16 @@
+{% extends 'myadmin/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+<div class="myadmin_container new_category_form">
+    <form class="form-horizontal" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="form-control" type="submit" value="Сохранить">
+    </form>
+    <a class="btn_main" href="{% url 'myadmin:products' pk %}">
+        К списку продуктов
+    </a>
+</div>
+{% endblock %}
